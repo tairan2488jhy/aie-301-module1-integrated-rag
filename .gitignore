@@ -1,0 +1,195 @@
+# =========================
+
+# Python
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+*.so
+
+# Python build / packaging
+
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# =========================
+
+# Virtual Environments
+
+# =========================
+
+.venv/
+venv/
+env/
+ENV/
+
+# =========================
+
+# Environment / Secrets
+
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# API keys / credentials
+
+*.pem
+*.key
+secrets/
+credentials/
+
+# =========================
+
+# IDE / Editor
+
+# =========================
+
+.vscode/
+.idea/
+*.iml
+
+# =========================
+
+# OS
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+
+# Jupyter
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# RAG / Vector Stores
+
+# =========================
+
+# Local Chroma database
+
+chroma_db/
+chroma/
+.chroma/
+
+# Local vector indexes
+
+vector_store/
+vectorstore/
+indexes/
+
+# =========================
+
+# Local Project Data
+
+# =========================
+
+# Raw / downloaded documents
+
+data/raw/
+data/tmp/
+
+# Generated chunks / intermediate data
+
+data/processed/
+data/generated/
+
+# =========================
+
+# Experiment Outputs
+
+# =========================
+
+experiments/output/
+experiments/results/
+*.log
+
+# =========================
+
+# Test / Coverage
+
+# =========================
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# =========================
+
+# Type Checking / Linters
+
+# =========================
+
+.mypy_cache/
+.pyright/
+.ruff_cache/
+
+# =========================
+
+# Local Logs
+
+# =========================
+
+logs/
+*.log
+
+# =========================
+
+# Temporary Files
+
+# =========================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# =========================
+
+# Local RAG Artifacts
+
+# =========================
+
+# Embedding caches
+
+.embedding_cache/
+embedding_cache/
+
+# Evaluation caches
+
+evaluation/cache/
+
+# Generated reports
+
+reports/generated/
+
+# =========================
+
+# Project-specific
+
+# =========================
+
+# Local developer knowledge source
+
+knowledge/local/
+
+# Local configuration
+
+config/local.yaml
+config/local.yml
