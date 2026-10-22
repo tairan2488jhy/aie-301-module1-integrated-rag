@@ -11,7 +11,7 @@ IN_MD_PATH = PROJECT_ROOT/"docs"/"raw"/"Hands-On_Large_Language_Models.md"
 OUT_JSONL_PATH = PROJECT_ROOT/"docs"/"raw"/"Hands-On_Large_Language_Models-FixedSizeChunking2.jsonl"
 
 # Config: pure fixed size, No OVERLAP
-TARGET_TOKEN_SIZE = 512
+TARGET_TOKEN_SIZE = 128 # 512
 
 
 # define funcition to return tiktoken's token counts

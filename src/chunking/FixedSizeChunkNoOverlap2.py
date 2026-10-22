@@ -11,7 +11,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 INPUT_MD_PATH = PROJECT_ROOT / "docs" / "raw" / "Hands-On_Large_Language_Models.md"
 OUTPUT_JSONL_PATH = PROJECT_ROOT / "docs" / "raw" / "Hands-On_Large_Language_Models-FixedSizeChunking.jsonl"
-TARGET_TOKEN_SIZE = 512
+TARGET_TOKEN_SIZE = 128 # 512
 ENCODER = tiktoken.get_encoding("cl100k_base")
 
 def count_tokens(text: str) -> int:
@@ -19,7 +19,7 @@ def count_tokens(text: str) -> int:
     return len(ENCODER.encode(text.strip(),  disallowed_special=()))
 
 def no_overlap_fixed_chunking(text: str, count_limit: int):
-    all_tokens = ENCODER.encode(text)
+    all_tokens = ENCODER.encode(text.strip(),  disallowed_special=())
     begin = 0
     sub_texts = []
     while begin < len(all_tokens):# Just when step length < all_tokens length ,loop in run!
