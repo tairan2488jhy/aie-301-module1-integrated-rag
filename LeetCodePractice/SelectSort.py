@@ -36,6 +36,34 @@ def select_sort_form_max():
     return needSort
 
 
+def select_sort_from_min():
+
+    idx = 0
+    while idx < len(needSort) - 1:
+        min_value = needSort[idx]
+        min_value_idx = idx
+
+        idx2 = idx + 1
+        while idx2 < len(needSort):
+            if needSort[idx2] < min_value:
+                min_value = needSort[idx2]
+                min_value_idx = idx2
+            idx2 += 1
+
+        if idx != min_value_idx:
+            swaps(idx, min_value_idx)
+
+        idx += 1
+
+
+
+
+
+
+
+
+
+
 def swaps(idx1: int, idx2: int) :
 
     needSort[idx1] = needSort[idx1]^needSort[idx2]
@@ -48,5 +76,6 @@ def swaps(idx1: int, idx2: int) :
 
 if __name__ == "__main__":
     print(f" before sort-->", needSort)
-    sorted = select_sort_form_max()
-    print(f"sorted-->",sorted)
+    # select_sort_form_max()
+    select_sort_from_min()
+    print(f"sorted-->",needSort)

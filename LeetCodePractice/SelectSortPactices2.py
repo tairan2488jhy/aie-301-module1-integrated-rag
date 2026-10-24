@@ -38,14 +38,58 @@ def select_sort_form_max(need_sort: list[int])-> list[int]:
 
     return need_sort
 
-def swaps(val1:int, val2:int):
-    val1 = val1 ^ val2
-    val2 = val1 ^ val2
-    val1 = val1 ^ val2
+# standurd optimize version
+def select_sort_from_min(need_sort: list[int])-> list[int]:
+    # select min value place to the first pos, etc.
+
+    # Make a copy to avoid mutating the input list
+    arr = need_sort.copy()
+    idx = 0
+    while idx < len(arr) - 1:
+        min_val_idx = idx
+        idx2 = idx + 1
+        while idx2 < len(arr):
+            if arr[idx2] < arr[idx]:
+                min_val_idx = idx2
+
+            idx2 += 1
+
+        if min_val_idx != idx:
+            arr[idx],arr[min_val_idx] = arr[min_val_idx],arr[idx]
+
+        idx += 1
+
+    return arr
+
+# optimized version
+def select_sort_from_max2(need_sort: list[int]) -> list[int]:
+    # Find the maximum element in the unsorted segment and swap it to the end of that segment, and so forth.
+    arr = need_sort.copy()
+    idx = 0
+    while idx < len(arr) - 1:
+        max_value_idx = 0
+
+        idx2 = 1
+        while idx2 < len(arr) - idx:
+            if arr[max_value_idx] < arr[idx2]:
+                max_value_idx = idx2
+
+            idx2 += 1
+
+
+        if max_value_idx != len(arr) - 1 - idx:
+            arr[max_value_idx],arr[len(arr) - 1 - idx] = arr[len(arr) - 1 - idx],arr[max_value_idx]
+
+        idx += 1
+
+
+    return arr
 
 
 if __name__ == "__main__":
     need_sort = [23, 5, 31, 22, 7, 106, 9, 3]
     print(f" before sort-->", need_sort)
-    sorted = select_sort_form_max(need_sort)
+    # sorted = select_sort_form_max(need_sort)
+    # sorted = select_sort_from_min(need_sort)
+    sorted = select_sort_from_max2(need_sort)
     print(f"sorted-->", sorted)
