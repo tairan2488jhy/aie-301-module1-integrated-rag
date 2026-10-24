@@ -14,7 +14,7 @@ def select_sort_form_max():
     maxvalue_idx = 0
     idx = 0
     idx2 = 1
-    while idx < len(needSort) - 2:
+    while idx < len(needSort) - 1: # because the last element of the list be regard as the sored list,so we just need to loop len(list)-1 turn!!
         maxvalue = needSort[0]
         maxvalue_idx = 0
         while idx2 < len(needSort) - idx:
