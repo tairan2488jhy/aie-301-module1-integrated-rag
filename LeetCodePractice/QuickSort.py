@@ -1,4 +1,7 @@
 
+import random
+from typing import List
+
 '''
 
 Perfect summary, this is the standard definition of quicksort.
@@ -70,6 +73,97 @@ def quick_sort(need_sort: list[int])->list[int]:
 
     return arr
 
+# 使用for 循环 豆包版本
+def quick_sort_simple(need_sort: list[int]) -> list[int]:
+    arr = need_sort.copy()
+    if not arr:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x <= pivot]
+    right = [x for x in arr[1:] if x > pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+
+
+# 原地快排
+def quick_sort_in_place(arr: List[int]) -> None:
+    def lomuto_partition(low: int, high: int) -> int:
+        # pick last element as pivot
+        pivot_val = arr[high]
+        i = low - 1
+        for j in range(low, high):
+            print(f"i-->",i)
+            print(f"j-->", j)
+            print(f"arr[j]-->", arr[j], "pivot_val-->",pivot_val)
+            if arr[j] <= pivot_val:
+                i += 1
+                print(f"arr i<-->j before -->",arr)
+                arr[i], arr[j] = arr[j], arr[i]
+                print(f"arr i<-->j after -->", arr)
+        # swap pivot to its correct position
+        print(f"arr i+1<-->high before -->", arr)
+        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+        print(f"arr i+1<-->high after -->", arr)
+        print(f"i+1-->", i + 1)
+        return i + 1
+
+    def _quick_sort(low: int, high: int) -> None:
+        if low < high:
+            pivot_idx = lomuto_partition(low, high)
+            _quick_sort(low, pivot_idx - 1)
+            _quick_sort(pivot_idx + 1, high)
+
+    _quick_sort(0, len(arr) - 1)
+
+
+# 工业界三数取中原地排序
+from typing import List
+
+def quick_sort_industrial(arr: List[int]) -> None:
+    THRESHOLD = 16
+
+    def insertion_sort(low: int, high: int) -> None:
+        for i in range(low + 1, high + 1): #Python range 左闭右开
+            val = arr[i]
+            j = i - 1
+            while j >= low and arr[j] > val:
+                arr[j + 1] = arr[j]
+                j -= 1
+            arr[j + 1] = val
+
+    def median_of_three(low: int, high: int) -> int:# 三位取中
+        mid = (low + high) // 2
+        if arr[low] > arr[mid]:
+            arr[low], arr[mid] = arr[mid], arr[low]
+        if arr[mid] > arr[high]:
+            arr[mid], arr[high] = arr[high], arr[mid]
+        if arr[low] > arr[mid]:
+            arr[low], arr[mid] = arr[mid], arr[low]
+        arr[mid], arr[high] = arr[high], arr[mid]
+        return high
+
+    def lomuto_partition(low: int, high: int) -> int:
+        pivot_val = arr[high]
+        i = low - 1
+        for j in range(low, high):
+            if arr[j] <= pivot_val:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+        return i + 1
+
+    def _quick_sort(low: int, high: int) -> None:
+        # 小于等于阈值，切插入排序，不再递归
+        if high - low + 1 <= THRESHOLD:
+            insertion_sort(low, high)
+            return
+        pivot_idx = median_of_three(low, high)
+        pivot_pos = lomuto_partition(low, pivot_idx)
+        _quick_sort(low, pivot_pos - 1)
+        _quick_sort(pivot_pos + 1, high)
+
+    _quick_sort(0, len(arr) - 1)
+
 
 
 
@@ -80,5 +174,5 @@ if __name__ == "__main__":
     # need_sort = [5, 7, 7, 5]
     # need_sort = [5, 7, 3]
     print(f" before sort-->", need_sort)
-    sorted = quick_sort(need_sort)
+    sorted = quick_sort_in_place(need_sort)
     print(f"sorted-->", sorted)
