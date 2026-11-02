@@ -118,7 +118,7 @@ def quick_sort_in_place(arr: List[int]) -> None:
 
 # 工业界三数取中原地排序
 from typing import List
-
+# Standard implement
 def quick_sort_industrial(arr: List[int]) -> None:
     THRESHOLD = 16
 
@@ -147,9 +147,9 @@ def quick_sort_industrial(arr: List[int]) -> None:
         i = low - 1
         for j in range(low, high):
             if arr[j] <= pivot_val:
-                i += 1
-                arr[i], arr[j] = arr[j], arr[i]
-        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+                i += 1  # left list index add 1!
+                arr[i], arr[j] = arr[j], arr[i] # it is a swaps operate ,so no value lost!
+        arr[i + 1], arr[high] = arr[high], arr[i + 1] # swaps the middle value (pivot) to the end of the left list!
         return i + 1
 
     def _quick_sort(low: int, high: int) -> None:
