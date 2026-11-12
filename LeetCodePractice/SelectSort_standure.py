@@ -30,3 +30,43 @@ if __name__ == "__main__":
     print("the list need to sort-->", need_sort)
     selection_sort(need_sort)
     print("the sorted list -->", need_sort)
+
+
+'''
+```python
+def selection_sort(arr:list[int])->None:
+    n = len(arr)
+    for i in range(n-1):
+        min_val_idx = i
+        for j in range(i+1,n):
+            if arr[j] < arr[min_val_idx]:
+                min_val_idx = j
+        if min_val_idx != i:
+            arr[min_val_idx],arr[i] = arr[i],arr[min_val_idx]
+
+if __name__ == "__main__":
+    need_sort = [23, 5, 31, 22, 7, 106, 9, 3]
+    print("the list need to sort-->", need_sort)
+    selection_sort(need_sort)
+    print("the sorted list -->", need_sort)
+```
+运行输出
+```
+the list need to sort--> [23, 5, 31, 22, 7, 106, 9, 3]
+the sorted list --> [3, 5, 7, 9, 22, 23, 31, 106]
+```
+✅ 代码标准正确
+
+### 核心要点
+逻辑：每一轮在未排序区间找到最小值下标，一轮结束后交换到有序区末尾（位置i）
+- 时间复杂度：最好/平均/最坏 $O(n^2)$
+- 空间复杂度：$\(O(1)\)$ 原地排序
+- 稳定性：**不稳定**
+- 特点：交换次数极少（最多 n-1 次）；**无法提前终止**，哪怕数组已经有序，内层循环依旧跑完
+
+### 英文口述
+Selection sort scans the unsorted region to find the index of the minimum element, then swaps it into place. 
+It has $O(n^2)$ time complexity in all cases, uses constant extra space, and is unstable. It minimizes the number of swaps.
+
+'''
+
